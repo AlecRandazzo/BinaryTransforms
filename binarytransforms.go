@@ -80,7 +80,7 @@ func LittleEndianBinaryToUInt16(inBytes []byte) (outUInt16 uint16, err error) {
 // Converts a little endian byte slice to uint32.
 func LittleEndianBinaryToUInt32(inBytes []byte) (outUInt32 uint32, err error) {
 	inBytesLength := len(inBytes)
-	if inBytesLength != 2 {
+	if inBytesLength != 4 {
 		err = fmt.Errorf("LittleEndianBinaryToUInt32() received %v bytes but expected 4 bytes", inBytesLength)
 		outUInt32 = 0
 		return
