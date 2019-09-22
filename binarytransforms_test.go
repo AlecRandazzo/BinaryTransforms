@@ -10,6 +10,7 @@
 package BinaryTransforms
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 )
@@ -22,18 +23,41 @@ func TestLittleEndianBinaryToInt64(t *testing.T) {
 		name         string
 		args         args
 		wantOutInt64 int64
+		wantErr      bool
 	}{
 		{
 			name:         "Testing with a random byte slice.",
 			args:         args{inBytes: []byte{20, 21, 255}},
 			wantOutInt64: -60140,
+			wantErr:      false,
+		},
+		{
+			name:         "Testing with null byte slice.",
+			args:         args{inBytes: []byte{}},
+			wantOutInt64: 0,
+			wantErr:      true,
+		},
+		{
+			name:         "Testing with byte slice larger than 8 bytes.",
+			args:         args{inBytes: []byte{20, 21, 22, 23, 24, 25, 26, 27, 28, 29}},
+			wantOutInt64: 0,
+			wantErr:      true,
+		},
+		{
+			name:         "Testing with byte slice with 8 bytes.",
+			args:         args{inBytes: []byte{1}},
+			wantOutInt64: 1,
+			wantErr:      false,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotOutInt64 := LittleEndianBinaryToInt64(tt.args.inBytes); !reflect.DeepEqual(gotOutInt64, tt.wantOutInt64) {
-				t.Errorf("LittleEndianBinaryToInt64() = %v, want %v", gotOutInt64, tt.wantOutInt64)
+			gotOutInt64, err := LittleEndianBinaryToInt64(tt.args.inBytes)
+			fmt.Println(gotOutInt64, tt.wantOutInt64)
+			if gotOutInt64 != tt.wantOutInt64 || (err != nil) != tt.wantErr {
+				t.Errorf("got = %v, want %v", gotOutInt64, tt.wantOutInt64)
 			}
+
 		})
 	}
 }
@@ -46,17 +70,31 @@ func TestLittleEndianBinaryToUInt16(t *testing.T) {
 		name          string
 		args          args
 		wantOutUInt16 uint16
+		wantErr       bool
 	}{
 		{
 			name:          "Testing with a random byte slice.",
 			args:          args{inBytes: []byte{246, 201}},
 			wantOutUInt16: 51702,
+			wantErr:       false,
+		},
+		{
+			name:          "Testing with null byte slice.",
+			args:          args{inBytes: []byte{}},
+			wantOutUInt16: 0,
+			wantErr:       true,
+		},
+		{
+			name:          "Testing with byte slice larger than 8 bytes.",
+			args:          args{inBytes: []byte{20, 20, 20, 20, 20, 20, 20, 20, 20, 20}},
+			wantOutUInt16: 0,
+			wantErr:       true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotOutUInt16, err := LittleEndianBinaryToUInt16(tt.args.inBytes); !reflect.DeepEqual(gotOutUInt16, tt.wantOutUInt16) && err == nil {
-				t.Errorf("LittleEndianBinaryToUInt16() = %v, want %v", gotOutUInt16, tt.wantOutUInt16)
+			if gotOutUInt16, err := LittleEndianBinaryToUInt16(tt.args.inBytes); !reflect.DeepEqual(gotOutUInt16, tt.wantOutUInt16) || (err != nil) != tt.wantErr {
+				t.Errorf("got = %v, want %v", gotOutUInt16, tt.wantOutUInt16)
 			}
 		})
 	}
@@ -70,17 +108,31 @@ func TestLittleEndianBinaryToUInt32(t *testing.T) {
 		name          string
 		args          args
 		wantOutUInt32 uint32
+		wantErr       bool
 	}{
 		{
 			name:          "Testing with a random byte slice.",
 			args:          args{inBytes: []byte{246, 201, 201, 0}},
 			wantOutUInt32: 13224438,
+			wantErr:       false,
+		},
+		{
+			name:          "Testing with null byte slice.",
+			args:          args{inBytes: []byte{}},
+			wantOutUInt32: 0,
+			wantErr:       true,
+		},
+		{
+			name:          "Testing with byte slice larger than 8 bytes.",
+			args:          args{inBytes: []byte{20, 20, 20, 20, 20, 20, 20, 20, 20, 20}},
+			wantOutUInt32: 0,
+			wantErr:       true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotOutUInt32, err := LittleEndianBinaryToUInt32(tt.args.inBytes); !reflect.DeepEqual(gotOutUInt32, tt.wantOutUInt32) && err == nil {
-				t.Errorf("LittleEndianBinaryToUInt32() = %v, want %v", gotOutUInt32, tt.wantOutUInt32)
+			if gotOutUInt32, err := LittleEndianBinaryToUInt32(tt.args.inBytes); !reflect.DeepEqual(gotOutUInt32, tt.wantOutUInt32) || (err != nil) != tt.wantErr {
+				t.Errorf("got = %v, want %v", gotOutUInt32, tt.wantOutUInt32)
 			}
 		})
 	}
@@ -94,17 +146,31 @@ func TestLittleEndianBinaryToUInt64(t *testing.T) {
 		name          string
 		args          args
 		wantOutUInt64 uint64
+		wantErr       bool
 	}{
 		{
 			name:          "Testing with a random byte slice.",
 			args:          args{inBytes: []byte{20, 21, 255}},
 			wantOutUInt64: 16717076,
+			wantErr:       false,
+		},
+		{
+			name:          "Testing with null byte slice.",
+			args:          args{inBytes: []byte{}},
+			wantOutUInt64: 0,
+			wantErr:       true,
+		},
+		{
+			name:          "Testing with byte slice larger than 8 bytes.",
+			args:          args{inBytes: []byte{20, 20, 20, 20, 20, 20, 20, 20, 20, 20}},
+			wantOutUInt64: 0,
+			wantErr:       true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotOutUInt64 := LittleEndianBinaryToUInt64(tt.args.inBytes); !reflect.DeepEqual(gotOutUInt64, tt.wantOutUInt64) {
-				t.Errorf("LittleEndianBinaryToUInt64() = %v, want %v", gotOutUInt64, tt.wantOutUInt64)
+			if gotOutUInt64, err := LittleEndianBinaryToUInt64(tt.args.inBytes); !reflect.DeepEqual(gotOutUInt64, tt.wantOutUInt64) || (err != nil) != tt.wantErr {
+				t.Errorf("got = %v, want %v", gotOutUInt64, tt.wantOutUInt64)
 			}
 		})
 	}
@@ -118,17 +184,25 @@ func TestUnicodeBytesToASCII(t *testing.T) {
 		name            string
 		args            args
 		wantAsciiString string
+		wantErr         bool
 	}{
 		{
 			name:            "Testing with a random byte slice.",
 			args:            args{unicodeBytes: []byte{116, 0, 101, 0, 115, 0, 116}},
 			wantAsciiString: "test",
+			wantErr:         false,
+		},
+		{
+			name:            "Testing with null byte slice.",
+			args:            args{unicodeBytes: []byte{}},
+			wantAsciiString: "",
+			wantErr:         true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotAsciiString := UnicodeBytesToASCII(tt.args.unicodeBytes); !reflect.DeepEqual(gotAsciiString, tt.wantAsciiString) {
-				t.Errorf("UnicodeBytesToASCII() = %v, want %v", gotAsciiString, tt.wantAsciiString)
+			if gotAsciiString, err := UnicodeBytesToASCII(tt.args.unicodeBytes); !reflect.DeepEqual(gotAsciiString, tt.wantAsciiString) || (err != nil) != tt.wantErr {
+				t.Errorf("got = %v, want %v", gotAsciiString, tt.wantAsciiString)
 			}
 		})
 	}
