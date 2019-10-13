@@ -7,7 +7,7 @@
  *
  */
 
-package BinaryTransforms
+package binarytransforms
 
 import (
 	"fmt"
@@ -183,26 +183,26 @@ func TestUnicodeBytesToASCII(t *testing.T) {
 	tests := []struct {
 		name            string
 		args            args
-		wantAsciiString string
+		wantASCIIString string
 		wantErr         bool
 	}{
 		{
 			name:            "Testing with a random byte slice.",
 			args:            args{unicodeBytes: []byte{116, 0, 101, 0, 115, 0, 116}},
-			wantAsciiString: "test",
+			wantASCIIString: "test",
 			wantErr:         false,
 		},
 		{
 			name:            "Testing with null byte slice.",
 			args:            args{unicodeBytes: []byte{}},
-			wantAsciiString: "",
+			wantASCIIString: "",
 			wantErr:         true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotAsciiString, err := UnicodeBytesToASCII(tt.args.unicodeBytes); !reflect.DeepEqual(gotAsciiString, tt.wantAsciiString) || (err != nil) != tt.wantErr {
-				t.Errorf("got = %v, want %v", gotAsciiString, tt.wantAsciiString)
+			if gotASCIIString, err := UnicodeBytesToASCII(tt.args.unicodeBytes); !reflect.DeepEqual(gotASCIIString, tt.wantASCIIString) || (err != nil) != tt.wantErr {
+				t.Errorf("got = %v, want %v", gotASCIIString, tt.wantASCIIString)
 			}
 		})
 	}
