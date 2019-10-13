@@ -7,7 +7,7 @@
  *
  */
 
-package BinaryTransforms
+package binarytransforms
 
 import (
 	"encoding/binary"
@@ -16,7 +16,7 @@ import (
 	"strings"
 )
 
-// Converts a little endian byte slice to int64.
+// LittleEndianBinaryToInt64 converts a little endian byte slice to int64.
 func LittleEndianBinaryToInt64(inBytes []byte) (outInt64 int64, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength > 8 || inBytesLength == 0 {
@@ -45,7 +45,7 @@ func LittleEndianBinaryToInt64(inBytes []byte) (outInt64 int64, err error) {
 	return
 }
 
-// Converts a little endian byte slice to uint64.
+// LittleEndianBinaryToUInt64 converts a little endian byte slice to uint64.
 func LittleEndianBinaryToUInt64(inBytes []byte) (outUInt64 uint64, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength > 8 || inBytesLength == 0 {
@@ -65,7 +65,7 @@ func LittleEndianBinaryToUInt64(inBytes []byte) (outUInt64 uint64, err error) {
 	return
 }
 
-// Converts a little endian byte slice to uint16.
+// LittleEndianBinaryToUInt16 converts a little endian byte slice to uint16.
 func LittleEndianBinaryToUInt16(inBytes []byte) (outUInt16 uint16, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength != 2 {
@@ -77,7 +77,7 @@ func LittleEndianBinaryToUInt16(inBytes []byte) (outUInt16 uint16, err error) {
 	return
 }
 
-// Converts a little endian byte slice to uint32.
+// LittleEndianBinaryToUInt32 converts a little endian byte slice to uint32.
 func LittleEndianBinaryToUInt32(inBytes []byte) (outUInt32 uint32, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength != 4 {
@@ -89,7 +89,7 @@ func LittleEndianBinaryToUInt32(inBytes []byte) (outUInt32 uint32, err error) {
 	return
 }
 
-// Converts a byte slice of unicode characters to ASCII
+// UnicodeBytesToASCII converts a byte slice of unicode characters to ASCII
 func UnicodeBytesToASCII(unicodeBytes []byte) (asciiString string, err error) {
 	inBytesLength := len(unicodeBytes)
 	if inBytesLength == 0 {
