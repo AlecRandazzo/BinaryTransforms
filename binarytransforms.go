@@ -20,7 +20,7 @@ import (
 func LittleEndianBinaryToInt64(inBytes []byte) (outInt64 int64, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength > 8 || inBytesLength == 0 {
-		err = fmt.Errorf("LittleEndianBinaryToInt64() received %v bytes but expected 1-8 bytes", inBytesLength)
+		err = fmt.Errorf("LittleEndianBinaryToInt64() received %d bytes but expected 1-8 bytes", inBytesLength)
 		outInt64 = 0
 		return
 	}
@@ -49,7 +49,7 @@ func LittleEndianBinaryToInt64(inBytes []byte) (outInt64 int64, err error) {
 func LittleEndianBinaryToUInt64(inBytes []byte) (outUInt64 uint64, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength > 8 || inBytesLength == 0 {
-		err = fmt.Errorf("LittleEndianBinaryToUInt64() received %v bytes but expected 1-8 bytes", inBytesLength)
+		err = fmt.Errorf("LittleEndianBinaryToUInt64() received %d bytes but expected 1-8 bytes", inBytesLength)
 		outUInt64 = 0
 		return
 	}
@@ -69,7 +69,7 @@ func LittleEndianBinaryToUInt64(inBytes []byte) (outUInt64 uint64, err error) {
 func LittleEndianBinaryToUInt16(inBytes []byte) (outUInt16 uint16, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength != 2 {
-		err = fmt.Errorf("LittleEndianBinaryToUInt16() received %v bytes but expected 2 bytes", inBytesLength)
+		err = fmt.Errorf("LittleEndianBinaryToUInt16() received %d bytes but expected 2 bytes", inBytesLength)
 		outUInt16 = 0
 		return
 	}
@@ -81,7 +81,7 @@ func LittleEndianBinaryToUInt16(inBytes []byte) (outUInt16 uint16, err error) {
 func LittleEndianBinaryToUInt32(inBytes []byte) (outUInt32 uint32, err error) {
 	inBytesLength := len(inBytes)
 	if inBytesLength != 4 {
-		err = fmt.Errorf("LittleEndianBinaryToUInt32() received %v bytes but expected 4 bytes", inBytesLength)
+		err = fmt.Errorf("LittleEndianBinaryToUInt32() received %d bytes but expected 4 bytes", inBytesLength)
 		outUInt32 = 0
 		return
 	}
