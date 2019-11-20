@@ -1,3 +1,3 @@
-module github.com/AlecRandazzo/BinaryTransforms
+module github.com/Go-Forensics/BinaryTransforms
 
-go 1.13.3
+go 1.13.4
