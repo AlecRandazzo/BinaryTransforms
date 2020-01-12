@@ -1,3 +1,3 @@
 module github.com/Go-Forensics/BinaryTransforms
 
-go 1.13.4
+go 1.13.6
