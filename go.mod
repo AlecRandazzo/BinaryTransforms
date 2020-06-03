@@ -1,3 +1,3 @@
-module github.com/Go-Forensics/BinaryTransforms
+module github.com/AlecRandazzo/BinaryTransforms
 
 go 1.14
